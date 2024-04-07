@@ -15,8 +15,6 @@ namespace CIS153_FinalProject
         public LoadingForm()
         {
             InitializeComponent();
-            this.BackgroundImage = Image.FromFile("train.jpg");
-            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void loadingTimer_Tick(object sender, EventArgs e)

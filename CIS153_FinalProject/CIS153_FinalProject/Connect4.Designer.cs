@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.selection = new System.Windows.Forms.PictureBox();
+            this.selection_picbox = new System.Windows.Forms.PictureBox();
             this.single_btn = new System.Windows.Forms.Button();
             this.twoPlayer_btn = new System.Windows.Forms.Button();
             this.stats_btn = new System.Windows.Forms.Button();
             this.exit_btn = new System.Windows.Forms.Button();
             this.gameTitle_lbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.selection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selection_picbox)).BeginInit();
             this.SuspendLayout();
             // 
-            // selection
+            // selection_picbox
             // 
-            this.selection.Image = global::CIS153_FinalProject.Properties.Resources.movin;
-            this.selection.Location = new System.Drawing.Point(-277, 12);
-            this.selection.Name = "selection";
-            this.selection.Size = new System.Drawing.Size(1377, 646);
-            this.selection.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.selection.TabIndex = 0;
-            this.selection.TabStop = false;
+            this.selection_picbox.Image = global::CIS153_FinalProject.Properties.Resources.movin;
+            this.selection_picbox.Location = new System.Drawing.Point(-277, 12);
+            this.selection_picbox.Name = "selection_picbox";
+            this.selection_picbox.Size = new System.Drawing.Size(1377, 646);
+            this.selection_picbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.selection_picbox.TabIndex = 0;
+            this.selection_picbox.TabStop = false;
             // 
             // single_btn
             // 
@@ -118,12 +118,13 @@
             this.Controls.Add(this.stats_btn);
             this.Controls.Add(this.twoPlayer_btn);
             this.Controls.Add(this.single_btn);
-            this.Controls.Add(this.selection);
+            this.Controls.Add(this.selection_picbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "Connect4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect4";
-            ((System.ComponentModel.ISupportInitialize)(this.selection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selection_picbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +132,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox selection;
+        private System.Windows.Forms.PictureBox selection_picbox;
         private System.Windows.Forms.Button single_btn;
         private System.Windows.Forms.Button twoPlayer_btn;
         private System.Windows.Forms.Button stats_btn;
