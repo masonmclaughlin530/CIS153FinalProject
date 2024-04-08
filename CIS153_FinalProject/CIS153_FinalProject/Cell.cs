@@ -25,9 +25,17 @@ namespace CIS153_FinalProject
         public int getRow() { return row; }
         public int getCol() { return col; }
         public Button getBtn() { return btn; }
-
+        
         public bool isP1Taken() {  return p1Taken; }
         public bool isP2Taken() {  return p2Taken; }
+        public bool isTaken()
+        {
+            if (p1Taken || p2Taken)
+            {
+                return true;
+            }
+            return false;
+        }
         //setters
         public void setP1taken() { p1Taken = true; }
         public void setP2taken() {  p2Taken = true; }
