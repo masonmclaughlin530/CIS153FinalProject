@@ -13,13 +13,13 @@ namespace CIS153_FinalProject
 {
     public partial class SinglePlayer : Form
     {
-        Board board ;
+        Board board;
         Cell cell;
         Connect4 connect4;
         public SinglePlayer()
         {
             InitializeComponent();
-           
+
         }
 
         public SinglePlayer(Connect4 c4)
@@ -51,21 +51,60 @@ namespace CIS153_FinalProject
             this.connect4.Close();
         }
 
-        
+
 
         private void onButtonClick(object sender, EventArgs e)
         {
             Console.WriteLine(sender.ToString());
             //If a button is clicked it turns green
-            Button btn = sender as Button;
-            btn.BackColor = Color.Green;
-            board.GetCell(int.Parse(btn.Text.ElementAt(0).ToString()), int.Parse(btn.Text.ElementAt(1).ToString())).setP1taken();
-            
+            Button btn = sender as Button;          
+            int r = int.Parse(btn.Text.ElementAt(0).ToString());
+            int c = int.Parse(btn.Text.ElementAt(1).ToString());
+
+            int targetrow = 5;
+            while (board.GetCell(targetrow, c).isP1Taken()) { targetrow--; }
+
+            board.GetCell(targetrow,c).setP1taken();
+            board.GetCell(targetrow,c).getBtn().BackColor = Color.Green;
+            board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
         }
 
-        private void btnMouseHover(object sender, EventArgs e)
+        
+
+
+        private void btnMouseLeave(object sender, EventArgs e)
         {
-            //Console.WriteLine(sender.ToString());
+            Button btn = sender as Button;
+            int r = int.Parse(btn.Text.ElementAt(0).ToString());
+            int c = int.Parse(btn.Text.ElementAt(1).ToString());
+            int targetrow = 5;
+
+            while (board.GetCell(targetrow, c).isP1Taken()) { targetrow--; }
+            
+            board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
+            
+
+
+        }
+
+        private void btnMouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int r = int.Parse(btn.Text.ElementAt(0).ToString());
+            int c = int.Parse(btn.Text.ElementAt(1).ToString());
+            int targetrow = 5;
+
+
+            while (board.GetCell(targetrow, c).isP1Taken()) { targetrow--; }
+            
+            Console.WriteLine(targetrow);
+
+            
+            board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
+            
+
+
+            
         }
     }
 }
