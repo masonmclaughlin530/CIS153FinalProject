@@ -19,9 +19,9 @@ namespace CIS153_FinalProject
 
         private void loadingTimer_Tick(object sender, EventArgs e)
         {
-            loadedPanel.Width += 3;
+            loadedPanel.Width += 43;
 
-            if (loadedPanel.Width > 300)
+            if (loadedPanel.Width > 903)
             {
                 loadingTimer.Stop();
                 loadGame();

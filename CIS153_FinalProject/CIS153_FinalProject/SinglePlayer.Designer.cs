@@ -34,9 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btn_01 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -44,7 +42,6 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
@@ -52,7 +49,6 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
@@ -60,7 +56,6 @@
             this.button29 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
             this.button34 = new System.Windows.Forms.Button();
             this.button35 = new System.Windows.Forms.Button();
@@ -68,7 +63,6 @@
             this.button37 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
             this.button39 = new System.Windows.Forms.Button();
-            this.button40 = new System.Windows.Forms.Button();
             this.button41 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.button43 = new System.Windows.Forms.Button();
@@ -144,38 +138,16 @@
             this.button5.Click += new System.EventHandler(this.onButtonClick);
             this.button5.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
-            // button6
+            // btn_01
             // 
-            this.button6.Location = new System.Drawing.Point(136, 26);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 75);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "01";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.onButtonClick);
-            this.button6.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(622, 26);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 75);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "07";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.onButtonClick);
-            this.button7.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(622, 107);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 75);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "17";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.onButtonClick);
-            this.button8.MouseHover += new System.EventHandler(this.btnMouseHover);
+            this.btn_01.Location = new System.Drawing.Point(136, 26);
+            this.btn_01.Name = "btn_01";
+            this.btn_01.Size = new System.Drawing.Size(75, 75);
+            this.btn_01.TabIndex = 6;
+            this.btn_01.Text = "01";
+            this.btn_01.UseVisualStyleBackColor = true;
+            this.btn_01.Click += new System.EventHandler(this.onButtonClick);
+            this.btn_01.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
             // button9
             // 
@@ -254,17 +226,6 @@
             this.button15.Click += new System.EventHandler(this.onButtonClick);
             this.button15.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(622, 188);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 75);
-            this.button16.TabIndex = 23;
-            this.button16.Text = "27";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.onButtonClick);
-            this.button16.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
             // button17
             // 
             this.button17.Location = new System.Drawing.Point(136, 188);
@@ -341,17 +302,6 @@
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.onButtonClick);
             this.button23.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
-            // button24
-            // 
-            this.button24.Location = new System.Drawing.Point(622, 269);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(75, 75);
-            this.button24.TabIndex = 31;
-            this.button24.Text = "37";
-            this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.onButtonClick);
-            this.button24.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
             // button25
             // 
@@ -430,17 +380,6 @@
             this.button31.Click += new System.EventHandler(this.onButtonClick);
             this.button31.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
-            // button32
-            // 
-            this.button32.Location = new System.Drawing.Point(622, 350);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(75, 75);
-            this.button32.TabIndex = 39;
-            this.button32.Text = "47";
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.onButtonClick);
-            this.button32.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
             // button33
             // 
             this.button33.Location = new System.Drawing.Point(136, 350);
@@ -517,17 +456,6 @@
             this.button39.UseVisualStyleBackColor = true;
             this.button39.Click += new System.EventHandler(this.onButtonClick);
             this.button39.MouseHover += new System.EventHandler(this.btnMouseHover);
-            // 
-            // button40
-            // 
-            this.button40.Location = new System.Drawing.Point(622, 431);
-            this.button40.Name = "button40";
-            this.button40.Size = new System.Drawing.Size(75, 75);
-            this.button40.TabIndex = 47;
-            this.button40.Text = "57";
-            this.button40.UseVisualStyleBackColor = true;
-            this.button40.Click += new System.EventHandler(this.onButtonClick);
-            this.button40.MouseHover += new System.EventHandler(this.btnMouseHover);
             // 
             // button41
             // 
@@ -611,7 +539,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 537);
-            this.Controls.Add(this.button40);
             this.Controls.Add(this.button41);
             this.Controls.Add(this.button42);
             this.Controls.Add(this.button43);
@@ -619,7 +546,6 @@
             this.Controls.Add(this.button45);
             this.Controls.Add(this.button46);
             this.Controls.Add(this.button47);
-            this.Controls.Add(this.button32);
             this.Controls.Add(this.button33);
             this.Controls.Add(this.button34);
             this.Controls.Add(this.button35);
@@ -627,7 +553,6 @@
             this.Controls.Add(this.button37);
             this.Controls.Add(this.button38);
             this.Controls.Add(this.button39);
-            this.Controls.Add(this.button24);
             this.Controls.Add(this.button25);
             this.Controls.Add(this.button26);
             this.Controls.Add(this.button27);
@@ -635,7 +560,6 @@
             this.Controls.Add(this.button29);
             this.Controls.Add(this.button30);
             this.Controls.Add(this.button31);
-            this.Controls.Add(this.button16);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button19);
@@ -643,7 +567,6 @@
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button23);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button11);
@@ -651,8 +574,7 @@
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button15);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btn_01);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -662,7 +584,6 @@
             this.Name = "SinglePlayer";
             this.Text = "SinglePlayer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SinglePlayer_FormClosing);
-            this.Load += new System.EventHandler(this.SinglePlayer_Load);
             this.ResumeLayout(false);
 
         }
@@ -675,9 +596,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btn_01;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -685,7 +604,6 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
@@ -693,7 +611,6 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Button button27;
@@ -701,7 +618,6 @@
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Button button32;
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button button35;
@@ -709,7 +625,6 @@
         private System.Windows.Forms.Button button37;
         private System.Windows.Forms.Button button38;
         private System.Windows.Forms.Button button39;
-        private System.Windows.Forms.Button button40;
         private System.Windows.Forms.Button button41;
         private System.Windows.Forms.Button button42;
         private System.Windows.Forms.Button button43;
