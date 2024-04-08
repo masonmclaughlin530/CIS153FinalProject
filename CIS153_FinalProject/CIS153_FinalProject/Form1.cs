@@ -21,7 +21,7 @@ namespace CIS153_FinalProject
         {
             loadedPanel.Width += 3;
 
-            if (loadedPanel.Width > 903)
+            if (loadedPanel.Width > 300)
             {
                 loadingTimer.Stop();
                 loadGame();

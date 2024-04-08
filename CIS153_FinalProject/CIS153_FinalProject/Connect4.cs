@@ -22,8 +22,8 @@ namespace CIS153_FinalProject
         {
             InitializeComponent();
             load = l;
-            this.BackgroundImage = Image.FromFile("movin.gif");
-            this.BackgroundImageLayout = ImageLayout.Stretch;
+            //this.BackgroundImage = Image.FromFile("movin.gif");
+            //this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void exit_btn_Click(object sender, EventArgs e)
