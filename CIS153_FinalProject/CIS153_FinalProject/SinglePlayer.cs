@@ -17,8 +17,11 @@ namespace CIS153_FinalProject
         Board board;
         Cell cell;
         Connect4 connect4;
+        int numberOfMove;
+        int column;
         public SinglePlayer()
         {
+            numberOfMove = 0;
             InitializeComponent();
 
         }
@@ -67,11 +70,41 @@ namespace CIS153_FinalProject
 
         private string checkIfGameOver()
         {
+            int horP1Pieaces = 0;
+            int horP2Pieaces = 0;
             //checks for vertical winning states
             for (int i = 0; i < 7; i++)
             if(board.GetCell(5,i).isP1Taken() && board.GetCell(4, i).isP1Taken() && board.GetCell(3, i).isP1Taken() && board.GetCell(2, i).isP1Taken())
             {
                 Console.WriteLine("GameOver");
+                    return null;
+            }
+            //return null;
+
+            for (int i = 0;i < 6;i++)
+            {
+                horP1Pieaces = 0;
+                horP2Pieaces=0;
+                for (int ii = 0; ii < 7; ii++)
+                {
+                    if (board.GetCell(i,ii).isP1Taken())
+                    {
+                        horP1Pieaces++;
+                    }
+                    if (board.GetCell(i,ii).isP2Taken())
+                    {
+                        horP2Pieaces++;
+                    }
+
+                    if (horP1Pieaces == 4)
+                    {
+                        Console.WriteLine("Player One Wins");
+                    }
+                    if ( horP2Pieaces == 4)
+                    {
+                        Console.WriteLine("The Computer Wins");
+                    }
+                }
             }
             return null;
         }
@@ -100,8 +133,17 @@ namespace CIS153_FinalProject
             board.GetCell(targetrow,c).getBtn().BackColor = Color.Green;
             board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
 
+            
+            if (numberOfMove == 0)
+            {
+                column = c;
+            }
+
+
+
+            moveAI();
             checkIfGameOver();
-            randomAIMove();
+            //randomAIMove();
         }
        
         //highlights potential button as grey on mouse leave
@@ -134,6 +176,103 @@ namespace CIS153_FinalProject
             Console.WriteLine(targetrow);
           
             board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;                       
+        }
+
+        private void moveAI()
+        {
+            int c;
+            int targetrow;
+            int p1Pieces = 0;
+            int p2Pieces = 0;
+            bool endTurn = false;
+            while (!endTurn)
+            {
+
+                if (numberOfMove == 0)
+                {
+                    c = 6 - column;
+
+                    if (column == 3)
+                    {
+                        Random rnd = new Random();
+                        c = column + rnd.Next(-1, 1);
+                    }
+                    targetrow = 5;
+                    while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+
+                    if (board.GetCell(targetrow, c).isTaken())
+                    {
+                        randomAIMove();
+                    }
+                    else
+                    {
+                        board.GetCell(targetrow, c).setP2taken();
+                        board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                    }
+
+                    column = c;
+                    numberOfMove++;
+                    endTurn = true;
+                }
+                else if (numberOfMove == 1)
+                {
+                    Random rnd = new Random();
+                    c = column + rnd.Next(-1, 1);
+                    targetrow = 5;
+                    while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+
+                    if (board.GetCell(targetrow, c).isTaken())
+                    {
+                        randomAIMove();
+                    }
+                    else
+                    {
+                        board.GetCell(targetrow, c).setP2taken();
+                        board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                    }
+
+                    numberOfMove++;
+                    endTurn = true;
+                }
+                else
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        p1Pieces = 0;
+                        p2Pieces = 0;
+                        for (int ii = 0; ii < 7; ii++)
+                        {
+                            if (board.GetCell(i, ii).isP1Taken())
+                            {
+                                p1Pieces++;
+                            }
+
+                            if (board.GetCell(i, ii).isP2Taken())
+                            {
+                                p2Pieces++;
+                            }
+                            
+                            if (p2Pieces == 3)
+                            {
+                                if(ii == 6)
+                                {
+                                    board.GetCell(i,ii-2).setP2taken();
+                                }
+                                else
+                                {
+                                    board.GetCell(i, ii + 1).setP2taken();
+                                }
+                            }
+
+
+                        }
+                    }
+                    endTurn = true;
+                }
+            }
+
+
+
         }
     }
 }
