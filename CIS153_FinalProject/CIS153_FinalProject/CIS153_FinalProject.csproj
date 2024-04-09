@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="Cell.cs" />
     <Compile Include="Connect4.cs">
       <SubType>Form</SubType>
     </Compile>
