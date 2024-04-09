@@ -135,11 +135,5 @@ namespace CIS153_FinalProject
           
             board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;                       
         }
-
-        private void rightClick(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Q) { Console.WriteLine("rightClicked"); }
-           
-        }
     }
 }
