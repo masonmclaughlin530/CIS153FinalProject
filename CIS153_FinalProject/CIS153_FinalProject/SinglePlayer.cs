@@ -214,7 +214,7 @@ namespace CIS153_FinalProject
                     {
                         if (blockVerticalCheck(row, col))
                         {
-                            if (!board.GetCell(row - 1, col).isTaken())
+                            if (!board.GetCell(row - 1, col).isTaken() && row != 0)
                             {
                                 board.GetCell(row - 1, col).setP2taken();
                                 board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
@@ -299,10 +299,12 @@ namespace CIS153_FinalProject
                             {
                                 if (!board.GetCell(row - (i - 1), col + i).isTaken())
                                 {
+                                    Console.WriteLine("ascending block false");
                                     return false;
                                 }
                                 else
                                 {
+                                    Console.WriteLine("ascending block true");
                                     board.GetCell(row - i, col + i).setP2taken();
                                     board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                     return true;
@@ -351,7 +353,8 @@ namespace CIS153_FinalProject
         //Instead of deleting it I just commented it out if you still wanted to try to implement the blocking methods with the previous moveAI method
         private void moveAI()
         {
-            if (!tryVerticalBlock() && !tryHorizontalBlock() && !tryDiagonalBlock())
+            
+            if (!verticalWin() && !horizontalWin() && !tryVerticalBlock() && !tryHorizontalBlock() && !tryDiagonalBlock())
             {
                 bool moveMade = false;
                 int attempts = 0;
@@ -377,14 +380,87 @@ namespace CIS153_FinalProject
             }
         }
 
+        private bool verticalWin()
+        {
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 7; col++)
+                {
+                    if (board.GetCell(row, col).isP2Taken())
+                    {
+                        if (winVerticalCheck(row, col))
+                        {
+                            if (!board.GetCell(row - 1, col).isTaken())
+                            {
+                                board.GetCell(row - 1, col).setP2taken();
+                                board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool horizontalWin()
+        {
+            for (int row = 0; row < 6; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    int p2Count = 0;
+                    for (int i = col; i < col + 4; i++)
+                    {
+                        if (board.GetCell(row, i).isP2Taken())
+                        {
+                            p2Count++;
+                        }
+                    }
+                    if (p2Count == 3)
+                    {
+                        for (int i = col; i < col + 4; i++)
+                        {
+                            if (!board.GetCell(row, i).isTaken())
+                            {
+                                if (row == 5)
+                                {
+                                    board.GetCell(row, i).setP2taken();
+                                    board.GetCell(row, i).getBtn().BackColor = Color.Red;
+                                    return true;
+                                }
+                                else if (!board.GetCell(row + 1, i).isTaken())
+                                {
+                                    return false;
+                                }
+
+                                board.GetCell(row, i).setP2taken();
+                                board.GetCell(row, i).getBtn().BackColor = Color.Red;
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private bool blockVerticalCheck(int row, int col)
         {
             if(board.GetCell(row+1, col).isP1Taken() && board.GetCell(row+2,col).isP1Taken()) 
             {
                 return true;
             }
+            return false;
+        }
 
-
+        private bool winVerticalCheck(int row, int col)
+        {
+            if (board.GetCell(row + 1, col).isP2Taken() && board.GetCell(row + 2, col).isP2Taken())
+            {
+                return true;
+            }
             return false;
         }
     }
