@@ -184,20 +184,43 @@ namespace CIS153_FinalProject
         //Vertical Block
         private bool tryVerticalBlock()
         {
-            for (int col = 0; col < 7; col++)
+            //for (int col = 0; col < 7; col++)
+            //{
+            //    for (int row = 0; row < 3; row++)
+            //    {
+            //        int p1Count = 0;
+            //        for (int i = row; i < row + 4; i++)
+            //        {
+            //            if (board.GetCell(i, col).isP1Taken()) p1Count++;
+            //        }
+            //        if (p1Count == 3 && board.GetCell(row + 3, col).isTaken() == false)
+            //        {
+            //            board.GetCell(row + 3, col).setP2taken();
+            //            board.GetCell(row + 3, col).getBtn().BackColor = Color.Red;
+            //            return true;
+            //        }
+            //    }
+            //}
+            //return false;
+
+
+            //vertical block did not work whene I tested it so I switched it to this
+            
+            for (int row = 0; row < 4; row++)
             {
-                for (int row = 0; row < 3; row++)
+                for (int col = 0; col < 7; col++)
                 {
-                    int p1Count = 0;
-                    for (int i = row; i < row + 4; i++)
+                    if (board.GetCell(row, col).isP1Taken())
                     {
-                        if (board.GetCell(i, col).isP1Taken()) p1Count++;
-                    }
-                    if (p1Count == 3 && board.GetCell(row + 3, col).isTaken() == false)
-                    {
-                        board.GetCell(row + 3, col).setP2taken();
-                        board.GetCell(row + 3, col).getBtn().BackColor = Color.Red;
-                        return true;
+                        if (blockVerticalCheck(row, col))
+                        {
+                            if (!board.GetCell(row - 1, col).isTaken())
+                            {
+                                board.GetCell(row - 1, col).setP2taken();
+                                board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
+                                return true;
+                            }
+                        }
                     }
                 }
             }
@@ -213,7 +236,10 @@ namespace CIS153_FinalProject
                     int p1Count = 0;
                     for (int i = col; i < col + 4; i++)
                     {
-                        if (board.GetCell(row, i).isP1Taken()) p1Count++;
+                        if (board.GetCell(row, i).isP1Taken())
+                        {
+                            p1Count++;
+                        }
                     }
                     if (p1Count == 3)
                     {
@@ -221,6 +247,20 @@ namespace CIS153_FinalProject
                         {
                             if (!board.GetCell(row, i).isTaken())
                             {
+                                //this should work everytime probably needs a little more testing
+                                //before this change it would just place even if there was no piece below
+                                //now will only place if there is a piece below it
+                                if(row == 5)
+                                {
+                                    board.GetCell(row, i).setP2taken();
+                                    board.GetCell(row,i).getBtn().BackColor = Color.Red;
+                                    return true;
+                                }
+                                else if (!board.GetCell(row + 1, i).isTaken())
+                                {
+                                    return false;
+                                }
+
                                 board.GetCell(row, i).setP2taken();
                                 board.GetCell(row, i).getBtn().BackColor = Color.Red;
                                 return true;
@@ -234,6 +274,8 @@ namespace CIS153_FinalProject
         //Ascending diagonal block
         private bool tryDiagonalBlock()
         {
+            //Descending still will place a piece in the air, ascending seems to have stopped (at least it did not during my testing)
+            // I think an out of bounds check needs to be added but I'm not sure
             // Ascending diagonal check
             for (int row = 3; row < 6; row++)
             {
@@ -242,17 +284,29 @@ namespace CIS153_FinalProject
                     int p1Count = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (board.GetCell(row - i, col + i).isP1Taken()) p1Count++;
+                        if (board.GetCell(row - i, col + i).isP1Taken())
+                        { 
+                            p1Count++;                          
+
+                        }
                     }
                     if (p1Count == 3)
                     {
                         for (int i = 0; i < 4; i++)
                         {
+                            //this is also checking the spot below the cell so that it doesn't just place it in the air
                             if (!board.GetCell(row - i, col + i).isTaken())
                             {
-                                board.GetCell(row - i, col + i).setP2taken();
-                                board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
-                                return true;
+                                if (!board.GetCell(row - (i - 1), col + i).isTaken())
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    board.GetCell(row - i, col + i).setP2taken();
+                                    board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -275,9 +329,16 @@ namespace CIS153_FinalProject
                         {
                             if (!board.GetCell(row - i, col - i).isTaken())
                             {
-                                board.GetCell(row - i, col - i).setP2taken();
-                                board.GetCell(row - i, col - i).getBtn().BackColor = Color.Red;
-                                return true;
+                                if (!board.GetCell(row - (i - 1), col - 1).isTaken())
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    board.GetCell(row - i, col - i).setP2taken();
+                                    board.GetCell(row - i, col - i).getBtn().BackColor = Color.Red;
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -314,6 +375,17 @@ namespace CIS153_FinalProject
 
                 numberOfMove++;
             }
+        }
+
+        private bool blockVerticalCheck(int row, int col)
+        {
+            if(board.GetCell(row+1, col).isP1Taken() && board.GetCell(row+2,col).isP1Taken()) 
+            {
+                return true;
+            }
+
+
+            return false;
         }
     }
 }
@@ -410,6 +482,8 @@ namespace CIS153_FinalProject
         //        }
         //    }
         //}
+
+
 
 
     
