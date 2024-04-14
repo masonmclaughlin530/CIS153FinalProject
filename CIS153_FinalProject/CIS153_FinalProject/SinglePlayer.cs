@@ -295,16 +295,18 @@ namespace CIS153_FinalProject
                         for (int i = 0; i < 4; i++)
                         {
                             //this is also checking the spot below the cell so that it doesn't just place it in the air
-                            if (!board.GetCell(row - i, col + i).isTaken())
-                            {
-                                if (!board.GetCell(row - (i - 1), col + i).isTaken())
+                            //if (!board.GetCell(row - i, col + i).isTaken())
+                            //{
+                               // if (!board.GetCell(row - (i - 1), col + i).isTaken())
+                               // {
+                               //     Console.WriteLine("ascending block false");
+                               //     return false;
+                               // }
+                               // else
+                               if (!board.GetCell(row - i, col + i).isTaken() &&
+                                  (row - i == 5 || board.GetCell(row - i - 1, col + i).isTaken()))
                                 {
-                                    Console.WriteLine("ascending block false");
-                                    return false;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("ascending block true");
+                                    //Console.WriteLine("ascending block true");
                                     board.GetCell(row - i, col + i).setP2taken();
                                     board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                     return true;
@@ -313,34 +315,34 @@ namespace CIS153_FinalProject
                         }
                     }
                 }
-            }
-
+            
+            // More testing needed
             // Descending diagonal block
-            for (int row = 3; row < 6; row++)
+            for (int row = 0; row < 3; row++)
             {
-                for (int col = 3; col < 7; col++)
+                for (int col = 0; col < 4; col++)
                 {
                     int p1Count = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (board.GetCell(row - i, col - i).isP1Taken()) p1Count++;
+                        if (board.GetCell(row + i, col + i).isP1Taken())
+                        {
+                            p1Count++;
+                        }
                     }
                     if (p1Count == 3)
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            if (!board.GetCell(row - i, col - i).isTaken())
+                            //ensuring support directly under the block position or it's the bottom row
+                            //preventing floating - needs some testing - hoping this will work for the floating pieces
+                            if (!board.GetCell(row + i, col + i).isTaken() &&
+                                (row + i == 5 || board.GetCell(row + i + 1, col + i).isTaken()))
                             {
-                                if (!board.GetCell(row - (i - 1), col - 1).isTaken())
-                                {
-                                    return false;
-                                }
-                                else
-                                {
-                                    board.GetCell(row - i, col - i).setP2taken();
-                                    board.GetCell(row - i, col - i).getBtn().BackColor = Color.Red;
-                                    return true;
-                                }
+                                board.GetCell(row + i, col + i).setP2taken();
+                                board.GetCell(row + i, col + i).getBtn().BackColor = Color.Red;
+                                return true;
+
                             }
                         }
                     }
@@ -354,7 +356,7 @@ namespace CIS153_FinalProject
         private void moveAI()
         {
             
-            if (!verticalWin() && !horizontalWin() && !tryVerticalBlock() && !tryHorizontalBlock() && !tryDiagonalBlock())
+            if (!verticalWin() && !horizontalWin() && !diagonalWin() && !tryVerticalBlock() && !tryHorizontalBlock() && !tryDiagonalBlock())
             {
                 bool moveMade = false;
                 int attempts = 0;
@@ -444,6 +446,42 @@ namespace CIS153_FinalProject
                 }
             }
             return false;
+        }
+        //Added a diagonalWin, I know you said you were working on it but thought i'd try to help
+        //Feel free to delete or change with your own, not sure if it's right
+        private bool diagonalWin()
+        {
+            // Check ascending diagonals (bottom-left to top-right)
+            for (int row = 3; row < 6; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    if (board.GetCell(row, col).isP2Taken() &&
+                        board.GetCell(row - 1, col + 1).isP2Taken() &&
+                        board.GetCell(row - 2, col + 2).isP2Taken() &&
+                        board.GetCell(row - 3, col + 3).isP2Taken())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // Check descending diagonals (top-left to bottom-right)
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    if (board.GetCell(row, col).isP2Taken() &&
+                        board.GetCell(row + 1, col + 1).isP2Taken() &&
+                        board.GetCell(row + 2, col + 2).isP2Taken() &&
+                        board.GetCell(row + 3, col + 3).isP2Taken())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false; // No diagonal wins found
         }
 
         private bool blockVerticalCheck(int row, int col)
