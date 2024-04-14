@@ -45,6 +45,9 @@ namespace CIS153_FinalProject
         private void stats_btn_Click(object sender, EventArgs e)
         {
             //Go to a statistics form
+            Stats st = new Stats(this);
+            st.Show();
+            this.Hide();
         }
 
         public void openSinglePlayer()

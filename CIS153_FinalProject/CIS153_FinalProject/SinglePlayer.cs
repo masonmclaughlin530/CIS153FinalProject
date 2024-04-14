@@ -501,6 +501,11 @@ namespace CIS153_FinalProject
             }
             return false;
         }
+
+        private void SinglePlayer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
         //if (!tryVerticalBlock() && !tryHorizontalBlock() && !tryDiagonalBlock())
