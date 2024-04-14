@@ -40,6 +40,7 @@ namespace CIS153_FinalProject
         private void twoPlayer_btn_Click(object sender, EventArgs e)
         {
             //Open a different form that pits player against player
+            openTwoPlayer(); 
         }
 
         private void stats_btn_Click(object sender, EventArgs e)
@@ -47,6 +48,13 @@ namespace CIS153_FinalProject
             //Go to a statistics form
             Stats st = new Stats(this);
             st.Show();
+            this.Hide();
+        }
+
+        public void openTwoPlayer()
+        {
+            TwoPlayer tp = new TwoPlayer(this);
+            tp.Show();
             this.Hide();
         }
 
