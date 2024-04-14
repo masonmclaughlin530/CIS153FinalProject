@@ -40,11 +40,19 @@ namespace CIS153_FinalProject
         private void twoPlayer_btn_Click(object sender, EventArgs e)
         {
             //Open a different form that pits player against player
+            openTwoPlayer(); 
         }
 
         private void stats_btn_Click(object sender, EventArgs e)
         {
             //Go to a statistics form
+        }
+
+        public void openTwoPlayer()
+        {
+            TwoPlayer tp = new TwoPlayer(this);
+            tp.Show();
+            this.Hide();
         }
 
         public void openSinglePlayer()
