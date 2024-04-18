@@ -70,39 +70,59 @@ namespace CIS153_FinalProject
 
         private string checkIfGameOver()
         {
-            int horP1Pieaces = 0;
-            int horP2Pieaces = 0;
-            //checks for vertical winning states
-            for (int i = 0; i < 7; i++)
-                if (board.GetCell(5, i).isP1Taken() && board.GetCell(4, i).isP1Taken() && board.GetCell(3, i).isP1Taken() && board.GetCell(2, i).isP1Taken())
-                {
-                    Console.WriteLine("GameOver");
-                    return null;
-                }
-            //return null;
-
-            for (int i = 0; i < 6; i++)
+            //vertical winsates=========================================================
+            for (int c = 0; c < 7; c++)// checks for every colloum
             {
-                horP1Pieaces = 0;
-                horP2Pieaces = 0;
-                for (int ii = 0; ii < 7; ii++)
+                for (int o = 0; o < 3; o++)// checks for every offset row position
                 {
-                    if (board.GetCell(i, ii).isP1Taken())
-                    {
-                        horP1Pieaces++;
-                    }
-                    if (board.GetCell(i, ii).isP2Taken())
-                    {
-                        horP2Pieaces++;
-                    }
 
-                    if (horP1Pieaces == 4)
+                    if (board.GetCell(5 - o, c).isP1Taken() && board.GetCell(4 - o, c).isP1Taken() && board.GetCell(3 - o, c).isP1Taken() && board.GetCell(2 - o, c).isP1Taken())
                     {
-                        Console.WriteLine("Player One Wins");
+                        Console.WriteLine("GameOver Player one wins");
                     }
-                    if (horP2Pieaces == 4)
+                    if (board.GetCell(5 - o, c).isP2Taken() && board.GetCell(4 - o, c).isP2Taken() && board.GetCell(3 - o, c).isP2Taken() && board.GetCell(2 - o, c).isP2Taken())
                     {
-                        Console.WriteLine("The Computer Wins");
+                        Console.WriteLine("GameOver Player Two wins");
+
+                    }
+                }
+            }
+            //horizontal winstates=======================================================
+            for (int r = 0; r < 6; r++)// checks for every row
+            {
+                for (int o = 0; o < 4; o++)// checks for every offset coloum position
+                {
+                    if (board.GetCell(r, 0 + o).isP1Taken() && board.GetCell(r, 1 + o).isP1Taken() && board.GetCell(r, 2 + o).isP1Taken() && board.GetCell(r, 3 + o).isP1Taken())
+                    {
+                        Console.WriteLine("GameOver Player one wins");
+                    }
+                    if (board.GetCell(r, 0 + o).isP2Taken() && board.GetCell(r, 1 + o).isP2Taken() && board.GetCell(r, 2 + o).isP2Taken() && board.GetCell(r, 3 + o).isP2Taken())
+                    {
+                        Console.WriteLine("GameOver Player two wins");
+                    }
+                }
+
+            }
+            //slanted winstates=====================================================
+            for (int r = 0; r < 3; r++)//row offsets
+            {
+                for (int c = 0; c < 4; c++)//coloum offsets
+                {
+                    if (board.GetCell(5 - r, 0 + c).isP1Taken() && board.GetCell(4 - r, 1 + c).isP1Taken() && board.GetCell(3 - r, 2 + c).isP1Taken() && board.GetCell(2 - r, 3 + c).isP1Taken())
+                    {
+                        Console.WriteLine("GameOver Player one wins");
+                    }
+                    if (board.GetCell(5 - r, 0 + c).isP2Taken() && board.GetCell(4 - r, 1 + c).isP2Taken() && board.GetCell(3 - r, 2 + c).isP2Taken() && board.GetCell(2 - r, 3 + c).isP2Taken())
+                    {
+                        Console.WriteLine("GameOver Player two wins");
+                    }
+                    if (board.GetCell(2 - r, 0 + c).isP1Taken() && board.GetCell(3 - r, 1 + c).isP1Taken() && board.GetCell(4 - r, 2 + c).isP1Taken() && board.GetCell(5 - r, 3 + c).isP1Taken())
+                    {
+                        Console.WriteLine("GameOver Player one wins");
+                    }
+                    if (board.GetCell(2 - r, 0 + c).isP2Taken() && board.GetCell(3 - r, 1 + c).isP2Taken() && board.GetCell(4 - r, 2 + c).isP2Taken() && board.GetCell(5 - r, 3 + c).isP2Taken())
+                    {
+                        Console.WriteLine("GameOver Player two wins");
                     }
                 }
             }
