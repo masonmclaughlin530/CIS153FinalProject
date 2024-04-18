@@ -412,16 +412,31 @@ namespace CIS153_FinalProject
                 while (!moveMade && attempts < 7)
                 {
                     int c = rnd.Next(0, 7);
-                    for (int targetRow = 5; targetRow >= 0; targetRow--)
+                    int targetRow = 5;
+
+                    // Find the lowest available row in the selected column
+                    while (targetRow >= 0 && board.GetCell(targetRow, c).isTaken())
                     {
-                        if (!board.GetCell(targetRow, c).isTaken())
-                        {
-                            board.GetCell(targetRow, c).setP2taken();
-                            board.GetCell(targetRow, c).getBtn().BackColor = Color.Red;
-                            moveMade = true;
-                            break;
-                        }
+                        targetRow--;
                     }
+
+                    // Check if an available cell was found in the column
+                    if (targetRow >= 0)
+                    {
+                        board.GetCell(targetRow, c).setP2taken();
+                        board.GetCell(targetRow, c).getBtn().BackColor = Color.Red;
+                        moveMade = true;
+                    }
+                    //for (int targetRow = 5; targetRow >= 0; targetRow--)
+                    //{
+                    //    if (!board.GetCell(targetRow, c).isTaken())
+                    //    {
+                    //        board.GetCell(targetRow, c).setP2taken();
+                    //        board.GetCell(targetRow, c).getBtn().BackColor = Color.Red;
+                    //        moveMade = true;
+                    //        break;
+                    //    }
+                    //}
                     attempts++;
                 }
 
