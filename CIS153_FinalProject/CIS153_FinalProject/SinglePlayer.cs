@@ -126,6 +126,27 @@ namespace CIS153_FinalProject
                     }
                 }
             }
+            // check for a draw =======================================================
+            bool allCellsTaken = true;
+            for (int r = 0; r < 6; r++)
+            {
+                for (int c = 0; c < 7; c++)
+                {
+                    if (!board.GetCell(r, c).isTaken())
+                    {
+                        allCellsTaken = false;
+                        break;
+                    }
+                }
+                if (!allCellsTaken) break;
+            }
+
+            if (allCellsTaken)
+            {
+                Console.WriteLine("The game is a draw.");
+                return "Draw";
+            }
+
             return null;
         }
 
