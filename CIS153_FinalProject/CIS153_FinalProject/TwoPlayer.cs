@@ -16,13 +16,14 @@ namespace CIS153_FinalProject
         Board board;
         Connect4 connect4;
         Cell cell;
-
+        bool p1Move;
         public TwoPlayer(Connect4 c4)
         {
             InitializeComponent();
             board = new Board();
             connect4 = c4;
             setupBoard();
+            p1Move = true;
         }
 
         private void setupBoard()
@@ -41,18 +42,50 @@ namespace CIS153_FinalProject
         private void On_btn_Click(object sender, MouseEventArgs e)
         {
             Console.WriteLine(sender.ToString());
+            // if it is player ones turn
+            if (p1Move)
+            {
+                Button btn = sender as Button;
+                int r = int.Parse(btn.Text.ElementAt(0).ToString());
+                int c = int.Parse(btn.Text.ElementAt(1).ToString());
 
-            Button btn = sender as Button;
-            int r = int.Parse(btn.Text.ElementAt(0).ToString());
-            int c = int.Parse(btn.Text.ElementAt(1).ToString());
+                int targetrow = 5;
+                while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
+                if (!board.GetCell(targetrow, c).isTaken())
+                {
+                    board.GetCell(targetrow, c).setP1taken();
+                    board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
+                    p1Move = false;
+                }
+                
+                if (targetrow  > 0)
+                {
+                    board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
+                }
 
-            int targetrow = 5;
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+                
+            }
+            else
+            {
+                Button btn = sender as Button;
+                int r = int.Parse(btn.Text.ElementAt(0).ToString());
+                int c = int.Parse(btn.Text.ElementAt(1).ToString());
 
-            board.GetCell(targetrow, c).setP1taken();
-            board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
-            board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
-
+                int targetrow = 5;
+                while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
+                Console.WriteLine(targetrow);
+                if (!board.GetCell(targetrow, c).isTaken())
+                {
+                    board.GetCell(targetrow, c).setP2taken();
+                    board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                    p1Move = true;
+                }
+                if (targetrow  > 0)
+                {
+                    board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
+                }
+               
+            }
 
             
             //randomAIMove();
@@ -65,12 +98,12 @@ namespace CIS153_FinalProject
             int c = int.Parse(btn.Text.ElementAt(1).ToString());
             int targetrow = 5;
 
+            
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }          
 
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
-
-            Console.WriteLine(targetrow);
-
-            board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
+            if (!board.GetCell(targetrow, c).isTaken())
+                board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
+            
         }
 
         private void On_Btn_Leave(object sender, EventArgs e)
@@ -79,10 +112,13 @@ namespace CIS153_FinalProject
             int r = int.Parse(btn.Text.ElementAt(0).ToString());
             int c = int.Parse(btn.Text.ElementAt(1).ToString());
             int targetrow = 5;
+            
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0 ) { targetrow--; }
+            Console.WriteLine(targetrow);
 
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
-
+            if (!board.GetCell(targetrow, c).isTaken()) 
             board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
+        
 
         }
     }

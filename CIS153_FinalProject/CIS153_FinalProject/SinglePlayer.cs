@@ -120,18 +120,23 @@ namespace CIS153_FinalProject
         //if a button is clicked it is set as "p1Taken" and turns green
         private void onButtonClick(object sender, EventArgs e)
         {
-            Console.WriteLine(sender.ToString());
-
             Button btn = sender as Button;
             int r = int.Parse(btn.Text.ElementAt(0).ToString());
             int c = int.Parse(btn.Text.ElementAt(1).ToString());
 
             int targetrow = 5;
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
+            if (!board.GetCell(targetrow, c).isTaken())
+            {
+                board.GetCell(targetrow, c).setP1taken();
+                board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
+                
+            }
 
-            board.GetCell(targetrow, c).setP1taken();
-            board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
-            board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
+            if (targetrow > 0)
+            {
+                board.GetCell(targetrow - 1, c).getBtn().BackColor = Color.Blue;
+            }
 
 
             if (numberOfMove == 0)
@@ -154,9 +159,11 @@ namespace CIS153_FinalProject
             int c = int.Parse(btn.Text.ElementAt(1).ToString());
             int targetrow = 5;
 
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
+            Console.WriteLine(targetrow);
 
-            board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
+            if (!board.GetCell(targetrow, c).isTaken())
+                board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
 
 
 
@@ -171,11 +178,10 @@ namespace CIS153_FinalProject
             int targetrow = 5;
 
 
-            while (board.GetCell(targetrow, c).isTaken()) { targetrow--; }
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
 
-            Console.WriteLine(targetrow);
-
-            board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
+            if (!board.GetCell(targetrow, c).isTaken())
+                board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
         }
         //========================================================================================
         //AI blocking logic - if you don't like this or have a better solution feel free to change
