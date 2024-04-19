@@ -454,7 +454,7 @@ namespace CIS153_FinalProject
                     {
                         if (winVerticalCheck(row, col))
                         {
-                            if (!board.GetCell(row - 1, col).isTaken())
+                            if (row > 0 && !board.GetCell(row - 1, col).isTaken())
                             {
                                 board.GetCell(row - 1, col).setP2taken();
                                 board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
