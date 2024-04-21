@@ -99,6 +99,9 @@
     <EmbeddedResource Include="SinglePlayer.resx">
       <DependentUpon>SinglePlayer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stats.resx">
+      <DependentUpon>Stats.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TwoPlayer.resx">
       <DependentUpon>TwoPlayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,7 +125,8 @@
     <None Include="Resources\train.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="statInfo.txt" />
+    <None Include="Resources\moon_bg.gif" />
+    <Content Include="Resources\statInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
