@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,6 +18,7 @@ namespace CIS153_FinalProject
         Board board;
         Cell cell;
         Connect4 connect4;
+        Stats st;
         int numberOfMove;
         int column;
         public SinglePlayer()
@@ -79,10 +81,16 @@ namespace CIS153_FinalProject
                     if (board.GetCell(5 - o, c).isP1Taken() && board.GetCell(4 - o, c).isP1Taken() && board.GetCell(3 - o, c).isP1Taken() && board.GetCell(2 - o, c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+
+                        //This is where we will add to the stats p1 win
+                        addP1Win();
                     }
                     if (board.GetCell(5 - o, c).isP2Taken() && board.GetCell(4 - o, c).isP2Taken() && board.GetCell(3 - o, c).isP2Taken() && board.GetCell(2 - o, c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player Two wins");
+
+                        //This is where we will add to the stats ai win
+                        addAIWin();
 
                     }
                 }
@@ -95,10 +103,16 @@ namespace CIS153_FinalProject
                     if (board.GetCell(r, 0 + o).isP1Taken() && board.GetCell(r, 1 + o).isP1Taken() && board.GetCell(r, 2 + o).isP1Taken() && board.GetCell(r, 3 + o).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+
+                        //This is where we will add to the stats p1 win
+                        addP1Win();
                     }
                     if (board.GetCell(r, 0 + o).isP2Taken() && board.GetCell(r, 1 + o).isP2Taken() && board.GetCell(r, 2 + o).isP2Taken() && board.GetCell(r, 3 + o).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+
+                        //This is where we will add to the stats ai win
+                        addAIWin();
                     }
                 }
 
@@ -111,18 +125,30 @@ namespace CIS153_FinalProject
                     if (board.GetCell(5 - r, 0 + c).isP1Taken() && board.GetCell(4 - r, 1 + c).isP1Taken() && board.GetCell(3 - r, 2 + c).isP1Taken() && board.GetCell(2 - r, 3 + c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+
+                        //This is where we will add to the stats p1 win
+                        addP1Win();
                     }
                     if (board.GetCell(5 - r, 0 + c).isP2Taken() && board.GetCell(4 - r, 1 + c).isP2Taken() && board.GetCell(3 - r, 2 + c).isP2Taken() && board.GetCell(2 - r, 3 + c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+
+                        //This is where we will add to the stats ai win
+                        addAIWin();
                     }
                     if (board.GetCell(2 - r, 0 + c).isP1Taken() && board.GetCell(3 - r, 1 + c).isP1Taken() && board.GetCell(4 - r, 2 + c).isP1Taken() && board.GetCell(5 - r, 3 + c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+
+                        //This is where we will add to the stats p1 win
+                        addP1Win();
                     }
                     if (board.GetCell(2 - r, 0 + c).isP2Taken() && board.GetCell(3 - r, 1 + c).isP2Taken() && board.GetCell(4 - r, 2 + c).isP2Taken() && board.GetCell(5 - r, 3 + c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+
+                        //This is where we will add to the stats ai win
+                        addAIWin();
                     }
                 }
             }
@@ -567,6 +593,81 @@ namespace CIS153_FinalProject
         private void SinglePlayer_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void addP1Win()
+        {
+            int p1;
+            int ai;
+            int tie;
+            string file = "F:\\MCCC Classes\\CIS-153-L1\\CIS153_homework\\CIS153_Final\\CIS153_FinalProject\\CIS153_FinalProject\\Resources\\statInfo.txt";
+            using (TextReader reader = File.OpenText(file))
+            {
+                p1 = int.Parse(reader.ReadLine());
+                ai = int.Parse(reader.ReadLine());
+                tie = int.Parse(reader.ReadLine());
+
+                p1++;
+            }
+
+            System.IO.File.WriteAllText(file, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                writer.WriteLine(p1.ToString());
+                writer.WriteLine(ai.ToString());
+                writer.WriteLine(tie.ToString());
+            }
+        }
+
+        public void addAIWin()
+        {
+            int p1;
+            int ai;
+            int tie;
+            string file = "F:\\MCCC Classes\\CIS-153-L1\\CIS153_homework\\CIS153_Final\\CIS153_FinalProject\\CIS153_FinalProject\\Resources\\statInfo.txt";
+            using (TextReader reader = File.OpenText(file))
+            {
+                p1 = int.Parse(reader.ReadLine());
+                ai = int.Parse(reader.ReadLine());
+                tie = int.Parse(reader.ReadLine());
+
+                ai++;
+            }
+
+            System.IO.File.WriteAllText(file, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                writer.WriteLine(p1.ToString());
+                writer.WriteLine(ai.ToString());
+                writer.WriteLine(tie.ToString());
+            }
+        }
+
+        public void addTiePoint()
+        {
+            int p1;
+            int ai;
+            int tie;
+            string file = "F:\\MCCC Classes\\CIS-153-L1\\CIS153_homework\\CIS153_Final\\CIS153_FinalProject\\CIS153_FinalProject\\Resources\\statInfo.txt";
+            using (TextReader reader = File.OpenText(file))
+            {
+                p1 = int.Parse(reader.ReadLine());
+                ai = int.Parse(reader.ReadLine());
+                tie = int.Parse(reader.ReadLine());
+
+                tie++;
+            }
+
+            System.IO.File.WriteAllText(file, string.Empty);
+
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                writer.WriteLine(p1.ToString());
+                writer.WriteLine(ai.ToString());
+                writer.WriteLine(tie.ToString());
+            }
         }
     }
 }
