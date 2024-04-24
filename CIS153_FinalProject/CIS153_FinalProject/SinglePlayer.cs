@@ -72,6 +72,7 @@ namespace CIS153_FinalProject
 
         private string checkIfGameOver()
         {
+            bool gameOver = false;
             //vertical winsates=========================================================
             for (int c = 0; c < 7; c++)// checks for every colloum
             {
@@ -84,6 +85,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats p1 win
                         addP1Win();
+                        gameOver = true;
                     }
                     if (board.GetCell(5 - o, c).isP2Taken() && board.GetCell(4 - o, c).isP2Taken() && board.GetCell(3 - o, c).isP2Taken() && board.GetCell(2 - o, c).isP2Taken())
                     {
@@ -91,6 +93,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats ai win
                         addAIWin();
+                        gameOver = true;
 
                     }
                 }
@@ -106,6 +109,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats p1 win
                         addP1Win();
+                        gameOver = true;
                     }
                     if (board.GetCell(r, 0 + o).isP2Taken() && board.GetCell(r, 1 + o).isP2Taken() && board.GetCell(r, 2 + o).isP2Taken() && board.GetCell(r, 3 + o).isP2Taken())
                     {
@@ -113,6 +117,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats ai win
                         addAIWin();
+                        gameOver = true;
                     }
                 }
 
@@ -128,6 +133,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats p1 win
                         addP1Win();
+                        gameOver = true;
                     }
                     if (board.GetCell(5 - r, 0 + c).isP2Taken() && board.GetCell(4 - r, 1 + c).isP2Taken() && board.GetCell(3 - r, 2 + c).isP2Taken() && board.GetCell(2 - r, 3 + c).isP2Taken())
                     {
@@ -135,6 +141,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats ai win
                         addAIWin();
+                        gameOver = true;
                     }
                     if (board.GetCell(2 - r, 0 + c).isP1Taken() && board.GetCell(3 - r, 1 + c).isP1Taken() && board.GetCell(4 - r, 2 + c).isP1Taken() && board.GetCell(5 - r, 3 + c).isP1Taken())
                     {
@@ -142,6 +149,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats p1 win
                         addP1Win();
+                        gameOver = true;
                     }
                     if (board.GetCell(2 - r, 0 + c).isP2Taken() && board.GetCell(3 - r, 1 + c).isP2Taken() && board.GetCell(4 - r, 2 + c).isP2Taken() && board.GetCell(5 - r, 3 + c).isP2Taken())
                     {
@@ -149,6 +157,7 @@ namespace CIS153_FinalProject
 
                         //This is where we will add to the stats ai win
                         addAIWin();
+                        gameOver = true;
                     }
                 }
             }
@@ -170,12 +179,33 @@ namespace CIS153_FinalProject
             if (allCellsTaken)
             {
                 Console.WriteLine("The game is a draw.");
-                return "Draw";
+                gameOver = true;
+            }
+            if (gameOver)
+            {
+                disableBoard();
             }
 
             return null;
         }
-
+        private void disableBoard()
+        {
+            for (int r = 0; r < 6; r++)  
+            {
+                for (int c = 0; c < 7; c++) 
+                {
+                    Cell cell = board.GetCell(r, c);
+                    if (cell != null) 
+                    {
+                        Button btn = cell.getBtn();
+                        if (btn != null)  
+                        {
+                            btn.Enabled = false;  
+                        }
+                    }
+                }
+            }
+        }
         private void SinglePlayer_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.connect4.Close();
