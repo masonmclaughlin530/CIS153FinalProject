@@ -571,6 +571,8 @@ namespace CIS153_FinalProject
         }
         //Added a diagonalWin, I know you said you were working on it but thought i'd try to help
         //Feel free to delete or change with your own, not sure if it's right
+        //I changed this so that it was placing a piece for the AI rather than checking for a win as that was my original intention
+        //I'm going to leave the code because it could be used to check for a win
         private bool diagonalWin()
         {
             // Check ascending diagonals (bottom-left to top-right)
@@ -588,53 +590,145 @@ namespace CIS153_FinalProject
             //    }
             //}
 
+            //for (int row = 3; row < 6; row++)
+            //{
+            //    for (int col = 0;col < 4; col++)
+            //    {
+            //        if(board.GetCell(row,col).isP2Taken() &&  
+            //           board.GetCell(row - 1,col + 1).isP2Taken() &&  
+            //           board.GetCell(row - 2,col + 2).isP2Taken() )
+            //        {
+            //            if (row != 5 && col != 0)
+            //            {
+            //                if (row == 4)
+            //                {
+            //                    if (!board.GetCell(row + 1, col - 1).isTaken())
+            //                    {
+            //                        board.GetCell(row + 1, col - 1).setP2taken();
+            //                        board.GetCell(row + 1, col - 1).getBtn().BackColor = Color.Red;
+            //                        return true;
+            //                    }
+            //                }
+            //                else if (!board.GetCell(row+1, col-1).isTaken() && board.GetCell(row + 2, col-1).isTaken())
+            //                {
+            //                    board.GetCell(row + 1, col - 1).setP2taken();
+            //                    board.GetCell(row + 1, col - 1).getBtn().BackColor = Color.Red;
+            //                    return true;
+            //                }
+            //            }
+            //            else if (!board.GetCell(row - 3,col + 3).isTaken() && board.GetCell(row-2,col+3).isTaken())
+            //            {
+            //                board.GetCell(row - 3, col + 3).setP2taken();
+            //                board.GetCell(row - 3, col + 3).getBtn().BackColor = Color.Red;
+            //                return true;
+            //            }
+            //        }
+            //    }
+            //}
+
             for (int row = 3; row < 6; row++)
             {
-                for (int col = 0;col < 4; col++)
+                for (int col = 0; col < 4; col++)
                 {
-                    if(board.GetCell(row,col).isP2Taken() &&  
-                       board.GetCell(row - 1,col + 1).isP2Taken() &&  
-                       board.GetCell(row - 2,col + 2).isP2Taken() )
+                    int p2Count = 0;
+                    for (int i = 0; i < 4; i++)
                     {
-                        if (row != 5 && col != 0)
+                        if (board.GetCell(row - i, col + i).isP2Taken())
                         {
-                            if (row == 4)
+                            p2Count++;
+
+                        }
+                    }
+                    if (p2Count == 3)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (!board.GetCell(row - i, col + i).isTaken() &&
+                               (row - i == 5 || board.GetCell(row - i - 1, col + i).isTaken()))
                             {
-                                if (!board.GetCell(row + 1, col - 1).isTaken())
-                                {
-                                    board.GetCell(row + 1, col - 1).setP2taken();
-                                    board.GetCell(row + 1, col - 1).getBtn().BackColor = Color.Red;
-                                    return true;
-                                }
-                            }
-                            else if (!board.GetCell(row+1, col).isTaken() && board.GetCell(row + 2, col).isTaken())
-                            {
-                                board.GetCell(row + 1, col - 1).setP2taken();
-                                board.GetCell(row + 1, col - 1).getBtn().BackColor = Color.Red;
+                                board.GetCell(row - i, col + i).setP2taken();
+                                board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                 return true;
                             }
-                        }
-                        else if (!board.GetCell(row - 3,col + 3).isTaken() && board.GetCell(row-2,col+3).isTaken())
-                        {
-                            board.GetCell(row - 3, col + 3).setP2taken();
-                            board.GetCell(row - 3, col + 3).getBtn().BackColor = Color.Red;
-                            return true;
                         }
                     }
                 }
             }
 
             // Check descending diagonals (top-left to bottom-right)
+            //for (int row = 0; row < 3; row++)
+            //{
+            //    for (int col = 0; col < 4; col++)
+            //    {
+            //        if (board.GetCell(row, col).isP2Taken() &&
+            //            board.GetCell(row + 1, col + 1).isP2Taken() &&
+            //            board.GetCell(row + 2, col + 2).isP2Taken() &&
+            //            board.GetCell(row + 3, col + 3).isP2Taken())
+            //        {
+            //            return true;
+            //        }
+            //    }
+            //}
+            //for (int row = 0; row < 3; row++)
+            //{
+            //    for (int col = 0; col < 4; col++)
+            //    {
+            //        if (board.GetCell(row, col).isP2Taken() &&
+            //           board.GetCell(row + 1, col + 1).isP2Taken() &&
+            //           board.GetCell(row + 2, col + 2).isP2Taken())
+            //        {
+            //            if (row != 0 && col != 0)
+            //            {
+            //                if (row == 2)
+            //                {
+            //                    if (!board.GetCell(row + 3, col + 3).isTaken())
+            //                    {
+            //                        board.GetCell(row + 3, col + 3).setP2taken();
+            //                        board.GetCell(row + 3, col + 3).getBtn().BackColor = Color.Red;
+            //                        return true;
+            //                    }
+            //                }
+            //                else if (!board.GetCell(row - 1, col - 1).isTaken() && board.GetCell(row, col-1).isTaken())
+            //                {
+            //                    board.GetCell(row - 1, col - 1).setP2taken();
+            //                    board.GetCell(row - 1, col - 1).getBtn().BackColor = Color.Red;
+            //                    return true;
+            //                }
+            //            }
+            //            else if (row != 2 && !board.GetCell(row + 3, col + 3).isTaken() && board.GetCell(row + 4, col + 3).isTaken())
+            //            {
+            //                board.GetCell(row + 3, col + 3).setP2taken();
+            //                board.GetCell(row - 3, col + 3).getBtn().BackColor = Color.Red;
+            //                return true;
+            //            }
+            //        }
+            //    }
+            //}
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    if (board.GetCell(row, col).isP2Taken() &&
-                        board.GetCell(row + 1, col + 1).isP2Taken() &&
-                        board.GetCell(row + 2, col + 2).isP2Taken() &&
-                        board.GetCell(row + 3, col + 3).isP2Taken())
+                    int p2Count = 0;
+                    for (int i = 0; i < 4; i++)
                     {
-                        return true;
+                        if (board.GetCell(row + i, col + i).isP1Taken())
+                        {
+                            p2Count++;
+                        }
+                    }
+                    if (p2Count == 3)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (!board.GetCell(row + i, col + i).isTaken() &&
+                                (row + i == 5 || board.GetCell(row + i + 1, col + i).isTaken()))
+                            {
+                                board.GetCell(row + i, col + i).setP2taken();
+                                board.GetCell(row + i, col + i).getBtn().BackColor = Color.Red;
+                                return true;
+
+                            }
+                        }
                     }
                 }
             }
