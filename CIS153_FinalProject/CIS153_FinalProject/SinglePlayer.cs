@@ -184,6 +184,8 @@ namespace CIS153_FinalProject
             if (gameOver)
             {
                 disableBoard();
+                lbl_TurnIndicator.Text = "Game Over";
+                lbl_TurnIndicator.ForeColor = Color.Black;
             }
 
             return null;
@@ -215,7 +217,7 @@ namespace CIS153_FinalProject
         //form functions
 
         //if a button is clicked it is set as "p1Taken" and turns green
-        private void onButtonClick(object sender, EventArgs e)
+        private async void onButtonClick(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             int r = int.Parse(btn.Text.ElementAt(0).ToString());
@@ -240,7 +242,12 @@ namespace CIS153_FinalProject
             {
                 column = c;
             }
-
+            lbl_TurnIndicator.Text = "Computer's Turn";
+            lbl_TurnIndicator.ForeColor = Color.Red;
+            //needed a delay because the AI was moving too fast to show label change
+            //tried using a timer but couldn't get it right, tried thread sleep and it just made it feel laggy
+            //this still seems to get stuck sometimes on computers turn so may need adjusting or if someone can figure out a better method
+            await Task.Delay(1000);
 
 
             moveAI();
@@ -499,8 +506,12 @@ namespace CIS153_FinalProject
                     //}
                     attempts++;
                 }
-
-                numberOfMove++;
+                if (moveMade)
+                {
+                    lbl_TurnIndicator.Text = "Player 1's Turn";
+                    lbl_TurnIndicator.ForeColor = Color.Green;
+                }
+                    numberOfMove++;
             }
         }
 
