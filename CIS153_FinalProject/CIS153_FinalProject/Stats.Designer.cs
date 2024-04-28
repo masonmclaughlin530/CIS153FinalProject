@@ -230,10 +230,11 @@
             this.Controls.Add(this.p1Wins_lbl);
             this.Controls.Add(this.gameStats_lbl);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Stats";
             this.Text = "Stats";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Stats_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

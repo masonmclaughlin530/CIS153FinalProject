@@ -126,7 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\moon_bg.gif" />
-    <Content Include="Resources\statInfo.txt" />
+    <Content Include="Resources\statInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

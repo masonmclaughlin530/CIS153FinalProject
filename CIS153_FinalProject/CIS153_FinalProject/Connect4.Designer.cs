@@ -119,11 +119,11 @@
             this.Controls.Add(this.twoPlayer_btn);
             this.Controls.Add(this.single_btn);
             this.Controls.Add(this.selection_picbox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Connect4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect4";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Connect4_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.selection_picbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

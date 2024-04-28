@@ -64,5 +64,10 @@ namespace CIS153_FinalProject
             sp.Show();
             this.Hide();
         }
+
+        private void Connect4_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.load.Close();
+        }
     }
 }

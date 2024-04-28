@@ -15,7 +15,7 @@ namespace CIS153_FinalProject
 {
     public partial class Stats : Form
     {
-        Connect4 c4;
+        Connect4 connect4;
         Stats st;
         public Stats()
         {
@@ -26,6 +26,7 @@ namespace CIS153_FinalProject
         {
             InitializeComponent();
             readFile();
+            connect4 = c4;
         }
 
         private void p1Wins_lbl_Click(object sender, EventArgs e)
@@ -65,6 +66,11 @@ namespace CIS153_FinalProject
             Connect4 c4 = new Connect4();
             c4.Show();
             this.Hide();
+        }
+
+        private void Stats_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.connect4.Close();
         }
     }
 }

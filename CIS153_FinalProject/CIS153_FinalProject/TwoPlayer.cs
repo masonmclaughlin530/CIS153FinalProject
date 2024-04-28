@@ -185,5 +185,10 @@ namespace CIS153_FinalProject
         
 
         }
+
+        private void TwoPlayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.connect4.Close();
+        }
     }
 }

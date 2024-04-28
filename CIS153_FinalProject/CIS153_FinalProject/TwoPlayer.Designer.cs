@@ -667,6 +667,7 @@
             this.Controls.Add(this.btn_00);
             this.Name = "TwoPlayer";
             this.Text = "TwoPlayer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TwoPlayer_FormClosing);
             this.ResumeLayout(false);
 
         }
