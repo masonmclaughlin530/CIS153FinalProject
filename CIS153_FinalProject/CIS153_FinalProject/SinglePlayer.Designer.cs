@@ -622,6 +622,7 @@
             // lbl_TurnIndicator
             // 
             this.lbl_TurnIndicator.AutoSize = true;
+            this.lbl_TurnIndicator.BackColor = System.Drawing.Color.Transparent;
             this.lbl_TurnIndicator.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_TurnIndicator.ForeColor = System.Drawing.Color.Green;
             this.lbl_TurnIndicator.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -636,7 +637,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 537);
+            this.BackgroundImage = global::CIS153_FinalProject.Properties.Resources.blue_Sq;
+            this.ClientSize = new System.Drawing.Size(671, 537);
             this.Controls.Add(this.lbl_TurnIndicator);
             this.Controls.Add(this.button41);
             this.Controls.Add(this.button42);

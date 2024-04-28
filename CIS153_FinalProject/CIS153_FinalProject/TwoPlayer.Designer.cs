@@ -622,7 +622,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 513);
+            this.BackgroundImage = global::CIS153_FinalProject.Properties.Resources.blue_Sq;
+            this.ClientSize = new System.Drawing.Size(646, 513);
             this.Controls.Add(this.button41);
             this.Controls.Add(this.button42);
             this.Controls.Add(this.button43);

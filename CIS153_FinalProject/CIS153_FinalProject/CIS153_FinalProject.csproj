@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\moon_bg.gif" />
+    <None Include="Resources\blue_Sq.jpg" />
     <Content Include="Resources\statInfo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
