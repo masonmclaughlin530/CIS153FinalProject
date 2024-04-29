@@ -186,6 +186,7 @@ namespace CIS153_FinalProject
                 disableBoard();
                 lbl_TurnIndicator.Text = "Game Over";
                 lbl_TurnIndicator.ForeColor = Color.Black;
+                return "gameOver";
             }
 
             return null;
@@ -242,6 +243,7 @@ namespace CIS153_FinalProject
             {
                 column = c;
             }
+            checkIfGameOver();
             lbl_TurnIndicator.Text = "Computer's Turn";
             lbl_TurnIndicator.ForeColor = Color.Red;
             //needed a delay because the AI was moving too fast to show label change
@@ -249,8 +251,11 @@ namespace CIS153_FinalProject
             //this still seems to get stuck sometimes on computers turn so may need adjusting or if someone can figure out a better method
             await Task.Delay(1000);
 
-
-            moveAI();
+            if (checkIfGameOver() != "gameOver")
+            {
+                moveAI();
+            }
+            
             checkIfGameOver();
             //randomAIMove();
         }
@@ -264,7 +269,7 @@ namespace CIS153_FinalProject
             int targetrow = 5;
 
             while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
-            Console.WriteLine(targetrow);
+            //Console.WriteLine(targetrow);
 
             if (!board.GetCell(targetrow, c).isTaken())
                 board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
@@ -418,9 +423,9 @@ namespace CIS153_FinalProject
                                // }
                                // else
                                if (!board.GetCell(row - i, col + i).isTaken() &&
-                                  (row - i == 5 || board.GetCell(row - i - 1, col + i).isTaken()))
+                                  (row - i == 5 || board.GetCell(row - i + 1, col + i).isTaken()))
                                 {
-                                    //Console.WriteLine("ascending block true");
+                                    Console.WriteLine("ascending block true");
                                     board.GetCell(row - i, col + i).setP2taken();
                                     board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                     return true;
@@ -655,8 +660,9 @@ namespace CIS153_FinalProject
                         for (int i = 0; i < 4; i++)
                         {
                             if (!board.GetCell(row - i, col + i).isTaken() &&
-                               (row - i == 5 || board.GetCell(row - i - 1, col + i).isTaken()))
+                               (row - i == 5 || board.GetCell(row - i + 1, col + i).isTaken()))
                             {
+                                //Console.WriteLine("Diagonal Win Check");
                                 board.GetCell(row - i, col + i).setP2taken();
                                 board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                 return true;
