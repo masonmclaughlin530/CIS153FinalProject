@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CIS153_FinalProject
 {
@@ -21,6 +22,7 @@ namespace CIS153_FinalProject
         Stats st;
         int numberOfMove;
         int column;
+        SinglePlayer sp;
         public SinglePlayer()
         {
             numberOfMove = 0;
@@ -179,6 +181,7 @@ namespace CIS153_FinalProject
             if (allCellsTaken)
             {
                 Console.WriteLine("The game is a draw.");
+                addTiePoint();
                 gameOver = true;
             }
             if (gameOver)
@@ -799,6 +802,23 @@ namespace CIS153_FinalProject
                 writer.WriteLine(ai.ToString());
                 writer.WriteLine(tie.ToString());
             }
+
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "You Won!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                }
+                if (result == DialogResult.No)
+                {
+                    Thread.Sleep(4500);
+                }
+            }
         }
 
         public void addAIWin()
@@ -824,6 +844,23 @@ namespace CIS153_FinalProject
                 writer.WriteLine(ai.ToString());
                 writer.WriteLine(tie.ToString());
             }
+
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "You Lost!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                }
+                if (result == DialogResult.No)
+                {
+                    Thread.Sleep(4500);
+                }
+            }
         }
 
         public void addTiePoint()
@@ -848,6 +885,23 @@ namespace CIS153_FinalProject
                 writer.WriteLine(p1.ToString());
                 writer.WriteLine(ai.ToString());
                 writer.WriteLine(tie.ToString());
+            }
+
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "It's a Tie!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                }
+                if (result == DialogResult.No)
+                {
+                    Thread.Sleep(4500);
+                }
             }
         }
     }
