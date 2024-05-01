@@ -664,7 +664,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 789);
+            this.BackgroundImage = global::CIS153_FinalProject.Properties.Resources.blue_Sq;
+            this.ClientSize = new System.Drawing.Size(646, 513);
             this.Controls.Add(this.button41);
             this.Controls.Add(this.button42);
             this.Controls.Add(this.button43);
@@ -710,6 +711,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TwoPlayer";
             this.Text = "TwoPlayer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TwoPlayer_FormClosing);
             this.ResumeLayout(false);
 
         }
