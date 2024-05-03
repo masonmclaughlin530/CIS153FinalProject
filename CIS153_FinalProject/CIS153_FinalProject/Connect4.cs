@@ -13,6 +13,7 @@ namespace CIS153_FinalProject
 {
     public partial class Connect4 : Form
     {
+        Connect4 c4;
         LoadingForm load;
         public Connect4()
         {
@@ -28,7 +29,7 @@ namespace CIS153_FinalProject
 
         private void exit_btn_Click(object sender, EventArgs e)
         {
-            this.load.Close();
+            this.Close();
         }
 
         private void single_btn_Click(object sender, EventArgs e)
@@ -47,6 +48,8 @@ namespace CIS153_FinalProject
         {
             //Go to a statistics form
             Stats st = new Stats(this);
+            st.StartPosition = FormStartPosition.Manual;
+            st.Location = this.Location;
             st.Show();
             this.Hide();
         }
@@ -54,6 +57,8 @@ namespace CIS153_FinalProject
         public void openTwoPlayer()
         {
             TwoPlayer tp = new TwoPlayer(this);
+            tp.StartPosition = FormStartPosition.Manual;
+            tp.Location = this.Location;
             tp.Show();
             this.Hide();
         }
@@ -61,6 +66,8 @@ namespace CIS153_FinalProject
         public void openSinglePlayer()
         {
             SinglePlayer sp = new SinglePlayer(this);
+            sp.StartPosition = FormStartPosition.Manual;
+            sp.Location = this.Location;
             sp.Show();
             this.Hide();
         }

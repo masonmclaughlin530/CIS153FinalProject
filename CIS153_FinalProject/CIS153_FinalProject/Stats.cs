@@ -72,5 +72,10 @@ namespace CIS153_FinalProject
         {
             this.connect4.Close();
         }
+
+        private void Stats_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
