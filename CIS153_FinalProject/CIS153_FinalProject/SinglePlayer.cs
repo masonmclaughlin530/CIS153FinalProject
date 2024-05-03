@@ -265,9 +265,10 @@ namespace CIS153_FinalProject
             if (checkIfGameOver() != "gameOver")
             {
                 moveAI();
+                checkIfGameOver();
             }
             
-            checkIfGameOver();
+            
             //randomAIMove();
             playerCanPlay = true;
         }
@@ -674,7 +675,7 @@ namespace CIS153_FinalProject
                             if (!board.GetCell(row - i, col + i).isTaken() &&
                                (row - i == 5 || board.GetCell(row - i + 1, col + i).isTaken()))
                             {
-                                //Console.WriteLine("Diagonal Win Check");
+                                Console.WriteLine("Diagonal Win Check");
                                 board.GetCell(row - i, col + i).setP2taken();
                                 board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
                                 return true;
@@ -685,54 +686,6 @@ namespace CIS153_FinalProject
             }
 
             // Check descending diagonals (top-left to bottom-right)
-            //for (int row = 0; row < 3; row++)
-            //{
-            //    for (int col = 0; col < 4; col++)
-            //    {
-            //        if (board.GetCell(row, col).isP2Taken() &&
-            //            board.GetCell(row + 1, col + 1).isP2Taken() &&
-            //            board.GetCell(row + 2, col + 2).isP2Taken() &&
-            //            board.GetCell(row + 3, col + 3).isP2Taken())
-            //        {
-            //            return true;
-            //        }
-            //    }
-            //}
-            //for (int row = 0; row < 3; row++)
-            //{
-            //    for (int col = 0; col < 4; col++)
-            //    {
-            //        if (board.GetCell(row, col).isP2Taken() &&
-            //           board.GetCell(row + 1, col + 1).isP2Taken() &&
-            //           board.GetCell(row + 2, col + 2).isP2Taken())
-            //        {
-            //            if (row != 0 && col != 0)
-            //            {
-            //                if (row == 2)
-            //                {
-            //                    if (!board.GetCell(row + 3, col + 3).isTaken())
-            //                    {
-            //                        board.GetCell(row + 3, col + 3).setP2taken();
-            //                        board.GetCell(row + 3, col + 3).getBtn().BackColor = Color.Red;
-            //                        return true;
-            //                    }
-            //                }
-            //                else if (!board.GetCell(row - 1, col - 1).isTaken() && board.GetCell(row, col-1).isTaken())
-            //                {
-            //                    board.GetCell(row - 1, col - 1).setP2taken();
-            //                    board.GetCell(row - 1, col - 1).getBtn().BackColor = Color.Red;
-            //                    return true;
-            //                }
-            //            }
-            //            else if (row != 2 && !board.GetCell(row + 3, col + 3).isTaken() && board.GetCell(row + 4, col + 3).isTaken())
-            //            {
-            //                board.GetCell(row + 3, col + 3).setP2taken();
-            //                board.GetCell(row - 3, col + 3).getBtn().BackColor = Color.Red;
-            //                return true;
-            //            }
-            //        }
-            //    }
-            //}
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 4; col++)
@@ -740,7 +693,7 @@ namespace CIS153_FinalProject
                     int p2Count = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (board.GetCell(row + i, col + i).isP1Taken())
+                        if (board.GetCell(row + i, col + i).isP2Taken())
                         {
                             p2Count++;
                         }
