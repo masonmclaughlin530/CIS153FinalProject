@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,6 +44,7 @@ namespace CIS153_FinalProject
 
         private void checkIfGameOver()
         {
+            bool gameOver = false;
             //vertical winsates=========================================================
             for (int c = 0; c < 7; c++)// checks for every colloum
             {
@@ -52,11 +54,14 @@ namespace CIS153_FinalProject
                     if (board.GetCell(5 - o, c).isP1Taken() && board.GetCell(4 - o, c).isP1Taken() && board.GetCell(3 - o, c).isP1Taken() && board.GetCell(2 - o, c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+                        p1Wins();
+                        gameOver = true;
                     }
                     if (board.GetCell(5 - o, c).isP2Taken() && board.GetCell(4 - o, c).isP2Taken() && board.GetCell(3 - o, c).isP2Taken() && board.GetCell(2 - o, c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player Two wins");
-
+                        p2Wins();
+                        gameOver = true;
                     }
                 }
             }
@@ -68,10 +73,14 @@ namespace CIS153_FinalProject
                     if (board.GetCell(r, 0 + o).isP1Taken() && board.GetCell(r, 1 + o).isP1Taken() && board.GetCell(r, 2 + o).isP1Taken() && board.GetCell(r, 3 + o).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+                        p1Wins();
+                        gameOver = true;
                     }
                     if (board.GetCell(r, 0 + o).isP2Taken() && board.GetCell(r, 1 + o).isP2Taken() && board.GetCell(r, 2 + o).isP2Taken() && board.GetCell(r, 3 + o).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+                        p2Wins();
+                        gameOver = true;
                     }
                 }
                 
@@ -84,22 +93,56 @@ namespace CIS153_FinalProject
                     if (board.GetCell(5 - r, 0 + c).isP1Taken() && board.GetCell(4 - r, 1 + c).isP1Taken() && board.GetCell(3 - r, 2 + c).isP1Taken() && board.GetCell(2 - r, 3 + c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+                        p1Wins();
+                        gameOver = true;
                     }
                     if (board.GetCell(5 - r, 0 + c).isP2Taken() && board.GetCell(4 - r, 1 + c).isP2Taken() && board.GetCell(3 - r, 2 + c).isP2Taken() && board.GetCell(2 - r, 3 + c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+                        p2Wins();
+                        gameOver = true;
                     }
                     if (board.GetCell(2 - r, 0 + c).isP1Taken() && board.GetCell(3 - r, 1 + c).isP1Taken() && board.GetCell(4 - r, 2 + c).isP1Taken() && board.GetCell(5 - r, 3 + c).isP1Taken())
                     {
                         Console.WriteLine("GameOver Player one wins");
+                        p1Wins();
+                        gameOver = true;
                     }
                     if (board.GetCell(2 - r, 0 + c).isP2Taken() && board.GetCell(3 - r, 1 + c).isP2Taken() && board.GetCell(4 - r, 2 + c).isP2Taken() && board.GetCell(5 - r, 3 + c).isP2Taken())
                     {
                         Console.WriteLine("GameOver Player two wins");
+                        p2Wins();
+                        gameOver = true;
                     }
                 }
             }
-            
+
+            bool allCellsTaken = true;
+            for (int r = 0; r < 6; r++)
+            {
+                for (int c = 0; c < 7; c++)
+                {
+                    if (!board.GetCell(r, c).isTaken())
+                    {
+                        allCellsTaken = false;
+                        break;
+                    }
+                }
+                if (!allCellsTaken) break;
+            }
+
+            if (allCellsTaken)
+            {
+                Console.WriteLine("The game is a draw.");
+                Tie();
+                gameOver = true;
+            }
+            if (gameOver)
+            {
+                disableBoard();
+                lbl_turnIndicator.Text = "Game Over";
+                lbl_turnIndicator.ForeColor = Color.Black;
+            }
 
         }
         private void On_btn_Click(object sender, MouseEventArgs e)
@@ -195,6 +238,82 @@ namespace CIS153_FinalProject
         private void TwoPlayer_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.connect4.Close();
+        }
+
+        private void p1Wins()
+        {
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "Player 1 Won!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                    return;
+                }
+                //Task.Delay(10000);
+                Thread.Sleep(3000);
+            }
+        }
+
+        private void p2Wins()
+        {
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "Player 2 Won!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                    return;
+                }
+                //Task.Delay(10000);
+                Thread.Sleep(3000);
+            }
+        }
+
+        private void Tie()
+        {
+            bool askAgain = true;
+            while (askAgain == true)
+            {
+                var result = MessageBox.Show("Want to leave?", "Nobody Wins!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    askAgain = false;
+                    connect4.Show();
+                    this.Hide();
+                    return;
+                }
+                //Task.Delay(10000);
+                Thread.Sleep(3000);
+            }
+        }
+
+        private void disableBoard()
+        {
+            for (int r = 0; r < 6; r++)
+            {
+                for (int c = 0; c < 7; c++)
+                {
+                    Cell cell = board.GetCell(r, c);
+                    if (cell != null)
+                    {
+                        Button btn = cell.getBtn();
+                        if (btn != null)
+                        {
+                            btn.Enabled = false;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -778,7 +778,7 @@ namespace CIS153_FinalProject
                     return;
                 }
                 //Task.Delay(10000);
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
             }
         }
 
@@ -819,7 +819,7 @@ namespace CIS153_FinalProject
                     return;
                 }
                 //Task.Delay(10000);
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
             }
         }
 
@@ -859,7 +859,7 @@ namespace CIS153_FinalProject
                     this.Hide();
                     return;
                 }
-                await Task.Delay(4500);
+                await Task.Delay(3000);
             }
         }
     }
