@@ -24,6 +24,8 @@ namespace CIS153_FinalProject
             connect4 = c4;
             setupBoard();
             p1Move = true;
+            lbl_turnIndicator.Text = "Player 1's Turn";
+            lbl_turnIndicator.ForeColor = Color.Green;
         }
 
         private void setupBoard()
@@ -116,6 +118,8 @@ namespace CIS153_FinalProject
                 {
                     board.GetCell(targetrow, c).setP1taken();
                     board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
+                    lbl_turnIndicator.Text = "Player 2's Turn";
+                    lbl_turnIndicator.ForeColor = Color.Red;
                     p1Move = false;
                 }
                 
@@ -139,6 +143,8 @@ namespace CIS153_FinalProject
                 {
                     board.GetCell(targetrow, c).setP2taken();
                     board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                    lbl_turnIndicator.Text = "Player 1's Turn";
+                    lbl_turnIndicator.ForeColor = Color.Green;
                     p1Move = true;
                 }
                 if (targetrow  > 0)
