@@ -63,9 +63,10 @@ namespace CIS153_FinalProject
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-            Connect4 c4 = new Connect4();
-            c4.Show();
+            //Connect4 c4 = new Connect4();
+            connect4.Show();
             this.Hide();
+            
         }
 
         private void Stats_FormClosing(object sender, FormClosingEventArgs e)
