@@ -9,6 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//=============================================================================================
+// Andrew Taylor
+//
+//
+//
+//=============================================================================================
+
 namespace CIS153_FinalProject
 {
     public partial class Connect4 : Form
