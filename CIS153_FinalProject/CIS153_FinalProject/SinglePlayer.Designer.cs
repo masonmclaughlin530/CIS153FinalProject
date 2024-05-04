@@ -76,6 +76,7 @@
             // btn_00
             // 
             this.btn_00.BackColor = System.Drawing.Color.Gray;
+            this.btn_00.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_00.Location = new System.Drawing.Point(55, 26);
             this.btn_00.Name = "btn_00";
             this.btn_00.Size = new System.Drawing.Size(75, 75);

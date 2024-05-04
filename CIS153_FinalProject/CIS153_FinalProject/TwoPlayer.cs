@@ -34,7 +34,9 @@ namespace CIS153_FinalProject
             foreach (var btn in this.Controls.OfType<Button>())
             {
                 int r = int.Parse(btn.Text.ElementAt(0).ToString());
+                btn.ForeColor = Color.Gray;
                 int c = int.Parse(btn.Text.ElementAt(1).ToString());
+                btn.ForeColor = Color.Gray;
 
                 cell = new Cell(r, c, btn);
                 
@@ -161,6 +163,7 @@ namespace CIS153_FinalProject
                 {
                     board.GetCell(targetrow, c).setP1taken();
                     board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
+                    board.GetCell(targetrow, c).getBtn().ForeColor = Color.Green;
                     lbl_turnIndicator.Text = "Player 2's Turn";
                     lbl_turnIndicator.ForeColor = Color.Red;
                     p1Move = false;
@@ -186,6 +189,7 @@ namespace CIS153_FinalProject
                 {
                     board.GetCell(targetrow, c).setP2taken();
                     board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                    board.GetCell(targetrow, c).getBtn().ForeColor = Color.Red;
                     lbl_turnIndicator.Text = "Player 1's Turn";
                     lbl_turnIndicator.ForeColor = Color.Green;
                     p1Move = true;
@@ -216,7 +220,8 @@ namespace CIS153_FinalProject
 
             if (!board.GetCell(targetrow, c).isTaken())
                 board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
-            
+                board.GetCell(targetrow, c).getBtn().ForeColor = Color.Blue;
+
         }
 
         private void On_Btn_Leave(object sender, EventArgs e)
@@ -231,7 +236,8 @@ namespace CIS153_FinalProject
 
             if (!board.GetCell(targetrow, c).isTaken()) 
             board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
-        
+            board.GetCell(targetrow, c).getBtn().ForeColor = Color.Gray;
+
 
         }
 
@@ -242,6 +248,8 @@ namespace CIS153_FinalProject
 
         private void p1Wins()
         {
+            lbl_turnIndicator.Text = "Game Over";
+            lbl_turnIndicator.ForeColor = Color.Black;
             bool askAgain = true;
             while (askAgain == true)
             {
@@ -261,6 +269,8 @@ namespace CIS153_FinalProject
 
         private void p2Wins()
         {
+            lbl_turnIndicator.Text = "Game Over";
+            lbl_turnIndicator.ForeColor = Color.Black;
             bool askAgain = true;
             while (askAgain == true)
             {
@@ -280,6 +290,8 @@ namespace CIS153_FinalProject
 
         private void Tie()
         {
+            lbl_turnIndicator.Text = "Game Over";
+            lbl_turnIndicator.ForeColor = Color.Black;
             bool askAgain = true;
             while (askAgain == true)
             {

@@ -46,7 +46,9 @@ namespace CIS153_FinalProject
             foreach (var btn in this.Controls.OfType<Button>())
             {
                 int r = int.Parse(btn.Text.ElementAt(0).ToString());
+                btn.ForeColor = Color.Gray;
                 int c = int.Parse(btn.Text.ElementAt(1).ToString());
+                btn.ForeColor = Color.Gray;
 
                 cell = new Cell(r, c, btn);
                 //Console.WriteLine(cell.getRow() + "," + cell.getCol());
@@ -71,6 +73,7 @@ namespace CIS153_FinalProject
             {
                 board.GetCell(targetrow, c).setP2taken();
                 board.GetCell(targetrow, c).getBtn().BackColor = Color.Red;
+                board.GetCell(targetrow, c).getBtn().ForeColor = Color.Red;
             }
         }
 
@@ -240,7 +243,8 @@ namespace CIS153_FinalProject
             {
                 board.GetCell(targetrow, c).setP1taken();
                 board.GetCell(targetrow, c).getBtn().BackColor = Color.Green;
-                
+                board.GetCell(targetrow, c).getBtn().ForeColor = Color.Green;
+
             }
 
             if (targetrow > 0)
@@ -273,6 +277,21 @@ namespace CIS153_FinalProject
             playerCanPlay = true;
         }
 
+        private void btnMouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int r = int.Parse(btn.Text.ElementAt(0).ToString());
+            int c = int.Parse(btn.Text.ElementAt(1).ToString());
+            int targetrow = 5;
+
+
+            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
+
+            if (!board.GetCell(targetrow, c).isTaken())
+                board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
+                board.GetCell(targetrow, c).getBtn().ForeColor = Color.Blue;
+        }
+
         //highlights potential button as grey on mouse leave
         private void btnMouseLeave(object sender, EventArgs e)
         {
@@ -286,25 +305,12 @@ namespace CIS153_FinalProject
 
             if (!board.GetCell(targetrow, c).isTaken())
                 board.GetCell(targetrow, c).getBtn().BackColor = Color.Gray;
-
-
+                board.GetCell(targetrow, c).getBtn().ForeColor = Color.Gray;
 
         }
 
         //highlights potential button as blue on mouse enter
-        private void btnMouseEnter(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            int r = int.Parse(btn.Text.ElementAt(0).ToString());
-            int c = int.Parse(btn.Text.ElementAt(1).ToString());
-            int targetrow = 5;
 
-
-            while (board.GetCell(targetrow, c).isTaken() && targetrow > 0) { targetrow--; }
-
-            if (!board.GetCell(targetrow, c).isTaken())
-                board.GetCell(targetrow, c).getBtn().BackColor = Color.Blue;
-        }
         //========================================================================================
         //AI blocking logic - if you don't like this or have a better solution feel free to change
         //========================================================================================
@@ -350,6 +356,7 @@ namespace CIS153_FinalProject
                             { 
                                 board.GetCell(row - 1, col).setP2taken();
                                 board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
+                                board.GetCell(row - 1, col).getBtn().ForeColor = Color.Red;
                                 return true;
                             }
                         }
@@ -386,6 +393,7 @@ namespace CIS153_FinalProject
                                 {
                                     board.GetCell(row, i).setP2taken();
                                     board.GetCell(row,i).getBtn().BackColor = Color.Red;
+                                    board.GetCell(row, i).getBtn().ForeColor = Color.Red;
                                     return true;
                                 }
                                 else if (!board.GetCell(row + 1, i).isTaken())
@@ -441,7 +449,8 @@ namespace CIS153_FinalProject
                                     Console.WriteLine("ascending block true");
                                     board.GetCell(row - i, col + i).setP2taken();
                                     board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
-                                    return true;
+                                    board.GetCell(row - i, col + i).getBtn().ForeColor = Color.Red;
+                                return true;
                                 }
                             }
                         }
@@ -473,6 +482,7 @@ namespace CIS153_FinalProject
                             {
                                 board.GetCell(row + i, col + i).setP2taken();
                                 board.GetCell(row + i, col + i).getBtn().BackColor = Color.Red;
+                                board.GetCell(row + i, col + i).getBtn().ForeColor = Color.Red;
                                 return true;
 
                             }
@@ -510,6 +520,7 @@ namespace CIS153_FinalProject
                     {
                         board.GetCell(targetRow, c).setP2taken();
                         board.GetCell(targetRow, c).getBtn().BackColor = Color.Red;
+                        board.GetCell(targetRow, c).getBtn().ForeColor = Color.Red;
                         moveMade = true;
                     }
                     //for (int targetRow = 5; targetRow >= 0; targetRow--)
@@ -547,6 +558,7 @@ namespace CIS153_FinalProject
                             {
                                 board.GetCell(row - 1, col).setP2taken();
                                 board.GetCell(row - 1, col).getBtn().BackColor = Color.Red;
+                                board.GetCell(row - 1, col).getBtn().ForeColor = Color.Red;
                                 return true;
                             }
                         }
@@ -581,6 +593,7 @@ namespace CIS153_FinalProject
                                 {
                                     board.GetCell(row, i).setP2taken();
                                     board.GetCell(row, i).getBtn().BackColor = Color.Red;
+                                    board.GetCell(row, i).getBtn().ForeColor = Color.Red;
                                     return true;
                                 }
                                 else if (!board.GetCell(row + 1, i).isTaken())
@@ -590,6 +603,7 @@ namespace CIS153_FinalProject
 
                                 board.GetCell(row, i).setP2taken();
                                 board.GetCell(row, i).getBtn().BackColor = Color.Red;
+                                board.GetCell(row, i).getBtn().ForeColor = Color.Red;
                                 return true;
                             }
                         }
@@ -678,6 +692,7 @@ namespace CIS153_FinalProject
                                 Console.WriteLine("Diagonal Win Check");
                                 board.GetCell(row - i, col + i).setP2taken();
                                 board.GetCell(row - i, col + i).getBtn().BackColor = Color.Red;
+                                board.GetCell(row - i, col + i).getBtn().ForeColor = Color.Red;
                                 return true;
                             }
                         }
@@ -707,6 +722,7 @@ namespace CIS153_FinalProject
                             {
                                 board.GetCell(row + i, col + i).setP2taken();
                                 board.GetCell(row + i, col + i).getBtn().BackColor = Color.Red;
+                                board.GetCell(row + i, col + i).getBtn().ForeColor = Color.Red;
                                 return true;
 
                             }
